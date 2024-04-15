@@ -3,6 +3,7 @@ import AVKit
 
 struct PlayerView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) private var modelContext
 
     @Bindable var series : SeriesInfo
     @State private var episodeQuery: String = ""
@@ -46,6 +47,7 @@ struct PlayerView: View {
                     }
                     .onAppear {
                         series.markCurEp()
+                        series.cache(context: modelContext)
                         series.dateWatched = Date()
 
                         Task {
@@ -130,7 +132,7 @@ struct PlayerView: View {
     }
     
     func getPlayerURL() -> URL {
-        //what the actual fuck is this line of code
+        //bad bad bad
         let server = gogoanimeServers[0]
         let playerUrl = server.1 + series.curEp.id!
         return URL(string: playerUrl)!

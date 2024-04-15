@@ -4,11 +4,12 @@ import SwiftData
 // enable passthrough for loading
 struct CategoryRowView: View {
     @Environment(\.modelContext) private var modelContext
-    let title: String
     let category: Category
     
     @State var doneLoading: Bool = false
     @State var page: Int = 1
+    
+    @State private var selectedSeries: SeriesInfo? = nil
     
     @State var results = [SeriesInfo]()
     
@@ -19,13 +20,12 @@ struct CategoryRowView: View {
     var body: some View {
         VStack(alignment: .leading) {
             NavigationLink {
-                SeriesGridView(list_series: results, loadNextPageIfNeeded: loadNextPageIfNeeded)
+                SeriesGridView(list_series: results, loadNextPageIfNeeded: loadNextPageIfNeeded, doneLoading: $doneLoading)
                     .navigationBarTitleDisplayMode(.inline)
-                    .navigationTitle(title)
-                //pass loadNextPageIfNeeded to this view to enable continued loading from within grid
+                    .navigationTitle(category.getTitle())
             } label: {
                 HStack {
-                    Text(title)
+                    Text(category.getTitle())
                         .font(.title2)
                         .foregroundStyle(.primary)
                         .padding(.leading)
@@ -39,16 +39,8 @@ struct CategoryRowView: View {
                 LazyHStack {
                     ForEach(results) { series in
                         HomePosterView(series: series)
-                            .contextMenu {
-                                Button(role: series.saved ? .destructive : .none) {
-                                    series.saved.toggle()
-                                } label: {
-                                    if series.saved {
-                                        Label("Unsave", systemImage: "minus")
-                                    } else {
-                                        Label("Save", systemImage: "plus")
-                                    }
-                                }
+                            .onTapGesture {
+                                selectedSeries = series
                             }
                         .onAppear {
                             loadNextPageIfNeeded(series)
@@ -60,6 +52,12 @@ struct CategoryRowView: View {
             .frame(height: 220)
             .task {
                 loadNextPage()
+            }
+        }
+        .sheet(item: $selectedSeries) { series in
+            NavigationView {
+                SeriesView(series: series)
+                    .accentColor(.indigo)
             }
         }
     }

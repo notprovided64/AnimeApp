@@ -5,13 +5,6 @@ import SwiftData
 
 //TODO implement class methods for removing, adding, refreshing
 
-enum LoadingState: Codable {
-    case new
-    case loading
-    case done
-    case failed
-}
-
 enum AiringStatus: Codable {
     case upcoming
     case ongoing
@@ -130,6 +123,24 @@ final class SeriesInfo: Identifiable, Codable, Equatable {
     
     func clearWatchHistory() {
         eps.modifyEach({$0.watched = false})
+    }
+    
+    func isCached(context: ModelContext) -> Bool {
+        let descriptor = FetchDescriptor<SeriesInfo>(predicate: #Predicate { $0.id == self.id })
+        do {
+            let is_cached = try context.fetch(descriptor).count == 1
+            return is_cached
+        } catch {
+            return true
+        }
+    }
+    
+    func cache(context: ModelContext) {
+        if self.isCached(context: context) {
+           return
+        }
+        
+        context.insert(self)
     }
     
 //    func getCategories() -> [Category] {

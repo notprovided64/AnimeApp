@@ -20,9 +20,9 @@ struct SeriesView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    //add this functionality into a seriesinfo class function
+                    // pull most of this out into its own seriesfunction + a view func
                     if !series.saved {
-                        modelContext.insert(series)
+                        series.cache(context: modelContext)
                         series.dateAdded = Date()
                         
                         if series.eps.count < 30 {
@@ -31,7 +31,6 @@ struct SeriesView: View {
                             }
                         }
                     }
-                    
                     series.saved.toggle()
                 } label: {
                     Image(systemName: !series.saved ? "plus.circle.fill" : "checkmark.circle.fill")
@@ -76,7 +75,6 @@ struct SeriesView: View {
             }
             
             // add support for tracking if an anime is currently airing, only run this code if true
-            //      that requires adding in basic metadata support and rewriting a good chunk of the gogo api :(
             if let dateSinceLastUpdate = series.dateSinceLastUpdate {
                 if Date().timeIntervalSince(dateSinceLastUpdate) / 3600 > 6 {
                     await gogoanime.getEpisodes(series: series)
@@ -89,9 +87,6 @@ struct SeriesView: View {
                     .tint(.indigo)
             }
         }
-//        .transaction({ transaction in
-//            transaction.disablesAnimations = true
-//        })
     }
 }
 
@@ -123,6 +118,7 @@ struct Header: View {
             .frame(height: 250)
         }
         .padding()
+        //TODO add wide play recent episode button
     }
 }
 

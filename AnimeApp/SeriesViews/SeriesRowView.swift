@@ -18,7 +18,7 @@ struct SeriesRow: View {
     @State var page: Int = 1
     @State var doneLoading: Bool = false
     
-    var extraContextMenuItem: ((_ series: SeriesInfo) -> any View)? = nil
+    @State private var selectedSeries: SeriesInfo? = nil
     
     var body: some View {
         if list_series.isEmpty && hideIfEmpty {
@@ -45,25 +45,20 @@ struct SeriesRow: View {
                     LazyHStack {
                         ForEach(list_series) { series in
                             HomePosterView(series: series)
-                                .contextMenu {
-                                    Button(role: series.saved ? .destructive : .none) {
-                                        series.saved.toggle()
-                                    } label: {
-                                        if series.saved {
-                                            Label("Unsave", systemImage: "minus")
-                                        } else {
-                                            Label("Save", systemImage: "plus")
-                                        }
-                                    }
-                                    if extraContextMenuItem != nil {
-                                        AnyView(extraContextMenuItem!(series))
-                                    }
+                                .onTapGesture {
+                                    selectedSeries = series
                                 }
                         }
                     }
                     .padding(.trailing)
                 }
                 .frame(height: 220)
+            }
+            .sheet(item: $selectedSeries) { series in
+                NavigationView {
+                    SeriesView(series: series)
+                        .accentColor(.indigo)
+                }
             }
         }
     }

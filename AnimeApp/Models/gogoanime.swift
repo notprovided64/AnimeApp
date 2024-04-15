@@ -4,13 +4,13 @@ import SwiftSoup
 import SwiftUI
 
 enum gogoanimeURL: String {
-    case host = "anitaku.to"
+    case host = "anitaku.so"
     case searchPath = "/search.html"
     case ajaxHost = "ajax.gogocdn.net"
     case ajaxPath = "/ajax/load-list-episode"
 }
 
-public enum Category: Int, Codable {
+public enum Category: Int, Codable, CaseIterable {
     case Airing
     case BoysLove
     case Comedy

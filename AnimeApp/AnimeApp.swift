@@ -25,21 +25,21 @@ struct AnimeApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
+
     
     var body: some Scene {
         WindowGroup {
-            TabView() {
-                HomeView()
-                    .tabItem {
-                        Label("Home", systemImage: "house")
-                    }
-                SettingsView()
-                    .tabItem {
-                        Label("Settings", systemImage: "gearshape")
-                    }
-            }
-            .accentColor(.indigo)
+            MainView()
         }
         .modelContainer(sharedModelContainer)
+        
+        #if targetEnvironment(macCatalyst)
+        let _ = UIApplication.shared.connectedScenes.compactMap { $0 as? UIWindowScene }.forEach { windowScene in
+            windowScene.sizeRestrictions?.minimumSize = CGSize(width: 800, height: 580)
+            windowScene.titlebar?.titleVisibility = UITitlebarTitleVisibility.hidden
+            windowScene.titlebar?.autoHidesToolbarInFullScreen = true
+            // windowScene.sizeRestrictions?.maximumSize = CGSize(width: 640, height: 480)
+        }
+        #endif
     }
 }

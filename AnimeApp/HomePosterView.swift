@@ -10,33 +10,39 @@ import SwiftUI
 struct HomePosterView: View {
     var series: SeriesInfo
     
-    @State var detailsShown = false
-    
     var body: some View {
-        Button {
-            detailsShown.toggle()
-        } label: {
-            AsyncImage(url: URL(string: series.image)) { image in
-                image
-                    .resizable()
-            } placeholder: {
-                ZStack {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                    Color(.clear)
+        AsyncImage(url: URL(string: series.image)) { image in
+            image
+                .resizable()
+        } placeholder: {
+            ZStack {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                Color(.clear)
+            }
+        }
+        .contextMenu {
+            Button(role: series.saved ? .destructive : .none) {
+                series.saved.toggle()
+            } label: {
+                if series.saved {
+                    Label("Unsave", systemImage: "minus")
+                } else {
+                    Label("Save", systemImage: "plus")
                 }
             }
-            .aspectRatio(2/3, contentMode: .fit)
-            .padding([.bottom, .leading])
-            .shadow(radius: 5)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .sheet(isPresented: $detailsShown) {
-            NavigationView {
-                SeriesView(series: series)
-                    .accentColor(.indigo)
+            if series.dateWatched != nil {
+                Button(role: .destructive) {
+                    series.dateWatched = nil
+                } label: {
+                    Label("Remove from Recently Watched", systemImage: "clock.badge.xmark")
+                }
             }
         }
+        .aspectRatio(2/3, contentMode: .fit)
+        .padding([.bottom, .leading])
+        .shadow(radius: 5)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

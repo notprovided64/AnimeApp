@@ -13,40 +13,26 @@ struct HomeView: View {
     var saved: [SeriesInfo]
     
     @AppStorage("homeLayout2") private var rows: [RowViewSetting] = defaultHomeScreen
-    
-    @State private var showSearch = false
 
     var body: some View {
-        // handle long press context menus
         NavigationStack {
             ScrollView {
                 ForEach(rows) { row in
                     if row.on {
                         switch row.type {
                         case .recent:
-                            SeriesRow(title: "Recently Watched", list_series: recent, hideIfEmpty: true, extraContextMenuItem: { series in
-                                    Button(role: .destructive) {
-                                        series.dateWatched = nil
-                                    } label: {
-                                        Label("Remove from Recently Watched", systemImage: "clock.badge.xmark")
-                                    }
-                                }
-                            )
+                            SeriesRow(title: "Recently Watched", list_series: recent, hideIfEmpty: true)
                         case .saved:
                             SeriesRow(title: "Saved Titles", list_series: saved, hideIfEmpty: true)
                         case.category(let category):
-                            CategoryRowView(title: category.getTitle(), category: category)
+                            CategoryRowView(category: category)
                         }
                     }
                 }
                 .padding(.bottom)
-
             }
             .scrollIndicators(.never)
-            .navigationDestination(isPresented: $showSearch) {
-               SearchView()
-           }
-            .navigationBarTitle("AnimeApp", displayMode: .automatic)
+            .navigationBarTitle("Home", displayMode: .automatic)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack {
@@ -55,25 +41,13 @@ struct HomeView: View {
                         } label : {
                             Image(systemName: "ellipsis.circle")
                         }
-                        
-                        Button {
-                            showSearch = true
-                        } label : {
-                            Image(systemName: "magnifyingglass")
-                        }
+                        .keyboardShortcut("f")
                     }
                 }
             }
+
         }
     }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(saved[index])
-            }
-        }
-    }    
 }
 
 //#Preview {

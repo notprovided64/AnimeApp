@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1631EC2E2BC614D500C7972F /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1631EC2D2BC614D500C7972F /* Data.swift */; };
+		1631EC302BC74BAC00C7972F /* TabMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1631EC2F2BC74BAC00C7972F /* TabMainView.swift */; };
+		1631EC322BC74BB300C7972F /* SidebarMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1631EC312BC74BB300C7972F /* SidebarMainView.swift */; };
+		1631EC372BC7645700C7972F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1631EC362BC7645700C7972F /* MainView.swift */; };
+		1631EC392BC7C05E00C7972F /* SavedSeriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1631EC382BC7C05E00C7972F /* SavedSeriesView.swift */; };
+		1631EC3C2BC7EDBB00C7972F /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1631EC3B2BC7EDBB00C7972F /* CategoryView.swift */; };
 		16CDF1CA2B6A2C930095CA53 /* AnimeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CDF1C92B6A2C930095CA53 /* AnimeApp.swift */; };
 		16CDF1CC2B6A2C930095CA53 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16CDF1CB2B6A2C930095CA53 /* HomeView.swift */; };
 		16CDF1D02B6A2C960095CA53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16CDF1CF2B6A2C960095CA53 /* Assets.xcassets */; };
@@ -52,6 +58,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1631EC2D2BC614D500C7972F /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		1631EC2F2BC74BAC00C7972F /* TabMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMainView.swift; sourceTree = "<group>"; };
+		1631EC312BC74BB300C7972F /* SidebarMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarMainView.swift; sourceTree = "<group>"; };
+		1631EC332BC74F5300C7972F /* AnimeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnimeApp.entitlements; sourceTree = "<group>"; };
+		1631EC362BC7645700C7972F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		1631EC382BC7C05E00C7972F /* SavedSeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedSeriesView.swift; sourceTree = "<group>"; };
+		1631EC3B2BC7EDBB00C7972F /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		16CDF1C62B6A2C930095CA53 /* AnimeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16CDF1C92B6A2C930095CA53 /* AnimeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeApp.swift; sourceTree = "<group>"; };
 		16CDF1CB2B6A2C930095CA53 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -107,6 +120,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1631EC3A2BC7ED5A00C7972F /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				1631EC362BC7645700C7972F /* MainView.swift */,
+				1631EC2F2BC74BAC00C7972F /* TabMainView.swift */,
+				1631EC312BC74BB300C7972F /* SidebarMainView.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
 		16CDF1BD2B6A2C930095CA53 = {
 			isa = PBXGroup;
 			children = (
@@ -130,14 +153,18 @@
 		16CDF1C82B6A2C930095CA53 /* AnimeApp */ = {
 			isa = PBXGroup;
 			children = (
+				1631EC332BC74F5300C7972F /* AnimeApp.entitlements */,
 				16CDF1C92B6A2C930095CA53 /* AnimeApp.swift */,
 				16CDF1F52B6A30210095CA53 /* Models */,
+				1631EC3A2BC7ED5A00C7972F /* MainViews */,
 				16CDF1CB2B6A2C930095CA53 /* HomeView.swift */,
+				1631EC382BC7C05E00C7972F /* SavedSeriesView.swift */,
+				1631EC3B2BC7EDBB00C7972F /* CategoryView.swift */,
 				16CDF2212B6BD15C0095CA53 /* SettingsView.swift */,
-				16CDF2082B6A44700095CA53 /* SearchView.swift */,
 				16CDF20C2B6A5DD40095CA53 /* SeriesView.swift */,
-				16CDF2132B6B2A580095CA53 /* SeriesViews */,
+				16CDF2082B6A44700095CA53 /* SearchView.swift */,
 				16CDF21B2B6B30FC0095CA53 /* PlayerView.swift */,
+				16CDF2132B6B2A580095CA53 /* SeriesViews */,
 				16CDF2162B6B30F00095CA53 /* WebView */,
 				16CDF20A2B6A46D70095CA53 /* PosterView.swift */,
 				16CDF2142B6B2BE90095CA53 /* HomePosterView.swift */,
@@ -176,11 +203,12 @@
 			isa = PBXGroup;
 			children = (
 				16CDF1FA2B6A306C0095CA53 /* SeriesInfo.swift */,
+				16CDF1FD2B6A306C0095CA53 /* Episode.swift */,
 				16CDF1F92B6A306C0095CA53 /* gogoanime.swift */,
 				16CDF2252B6CE4FD0095CA53 /* myanimelist.swift */,
-				16CDF1FD2B6A306C0095CA53 /* Episode.swift */,
-				16CDF1F62B6A306C0095CA53 /* Extensions.swift */,
 				16CDF2232B6C73A90095CA53 /* Settings.swift */,
+				1631EC2D2BC614D500C7972F /* Data.swift */,
+				16CDF1F62B6A306C0095CA53 /* Extensions.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -189,8 +217,8 @@
 			isa = PBXGroup;
 			children = (
 				16CDF2112B6B29C60095CA53 /* SeriesRowView.swift */,
-				16CDF20F2B6B29B70095CA53 /* SeriesGridView.swift */,
 				16CDF21F2B6BC4420095CA53 /* CategoryRowView.swift */,
+				16CDF20F2B6B29B70095CA53 /* SeriesGridView.swift */,
 			);
 			path = SeriesViews;
 			sourceTree = "<group>";
@@ -340,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1631EC322BC74BB300C7972F /* SidebarMainView.swift in Sources */,
 				16CDF2002B6A306D0095CA53 /* gogoanime.swift in Sources */,
 				16CDF2202B6BC4420095CA53 /* CategoryRowView.swift in Sources */,
 				16CDF1CC2B6A2C930095CA53 /* HomeView.swift in Sources */,
@@ -351,11 +380,16 @@
 				16CDF2262B6CE4FD0095CA53 /* myanimelist.swift in Sources */,
 				16CDF21A2B6B30F00095CA53 /* PlayerWebView.swift in Sources */,
 				16CDF2042B6A306D0095CA53 /* Episode.swift in Sources */,
+				1631EC2E2BC614D500C7972F /* Data.swift in Sources */,
+				1631EC392BC7C05E00C7972F /* SavedSeriesView.swift in Sources */,
+				1631EC3C2BC7EDBB00C7972F /* CategoryView.swift in Sources */,
+				1631EC302BC74BAC00C7972F /* TabMainView.swift in Sources */,
 				16CDF20B2B6A46D70095CA53 /* PosterView.swift in Sources */,
 				16CDF2102B6B29B70095CA53 /* SeriesGridView.swift in Sources */,
 				16CDF2092B6A44700095CA53 /* SearchView.swift in Sources */,
 				16CDF2012B6A306D0095CA53 /* SeriesInfo.swift in Sources */,
 				16CDF2152B6B2BE90095CA53 /* HomePosterView.swift in Sources */,
+				1631EC372BC7645700C7972F /* MainView.swift in Sources */,
 				16CDF1CA2B6A2C930095CA53 /* AnimeApp.swift in Sources */,
 				16CDF1FE2B6A306D0095CA53 /* Extensions.swift in Sources */,
 				16CDF2122B6B29C60095CA53 /* SeriesRowView.swift in Sources */,
@@ -519,6 +553,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AnimeApp/AnimeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AnimeApp/Preview Content\"";
@@ -538,6 +573,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.notpr.AnimeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -549,6 +587,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AnimeApp/AnimeApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AnimeApp/Preview Content\"";
@@ -568,6 +607,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.notpr.AnimeApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
